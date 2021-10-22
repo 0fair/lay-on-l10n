@@ -1,0 +1,4 @@
+[core]
+    remote = moslib_data
+['remote "moslib_data"']
+    url = https://storage.yandexcloud.net/moslib

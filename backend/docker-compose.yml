@@ -1,0 +1,50 @@
+version: '3.9'
+services:
+  moslib:
+    build: .
+    container_name: moslib-backend
+    ports:
+      - "8080:80"
+    networks:
+      - moslib-recsys
+    volumes:
+      - "./app:/code/app"
+      - "./requirements.txt:/code/requirements.txt"
+    command:
+      - "uvicorn"
+      - "app.main:app"
+      - "--proxy-headers"
+      - "--host"
+      - "0.0.0.0"
+      - "--reload"
+      - "--port"
+      - "80"
+    depends_on:
+      - moslib-db
+    environment:
+      - DATABASE_URI=postgresql://movie_db_username:movie_db_password@moslib-db:5432/movie_db_dev
+
+  moslib-db:
+    image: postgres:13
+    container_name: moslib-db
+    hostname: moslib-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - .storage:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=movie_db_username
+      - POSTGRES_PASSWORD=movie_db_password
+      - POSTGRES_DB=movie_db_dev
+    networks:
+      - moslib-recsys
+
+networks:
+  moslib-recsys:
+    external: true
+    name: moslib-recsys
+
+
+
+
+# @todo вынести environment в отдельные файлы переменных окружения
