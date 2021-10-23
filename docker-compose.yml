@@ -1,7 +1,20 @@
 version: '3.9'
 services:
-  moslib:
-    build: .
+  moslib-frontend:
+    image: "nginx:1.21.3"
+    container_name: moslib-frontend
+    ports:
+      - 80
+      - 443
+    networks:
+      - moslib-recsys
+    depends_on:
+      - moslib-db
+    environment:
+      - DATABASE_URI=postgresql://movie_db_username:movie_db_password@moslib-db:5432/movie_db_dev
+
+  moslib-backend:
+    build: ./backend/.
     container_name: moslib-backend
     ports:
       - "8080:80"

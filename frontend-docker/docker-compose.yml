@@ -1,0 +1,14 @@
+services:
+  moslib-frontend:
+    build: .
+    container_name: moslib-frontend
+    ports:
+      - "80:80"
+    networks:
+      - moslib-recsys
+
+networks:
+  moslib-recsys:
+    external: true
+    name: moslib-recsys
+

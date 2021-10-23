@@ -1,0 +1,23 @@
+{
+  "name": "react-material-ui-todoapp-example",
+  "version": "1.0.0",
+  "description":
+    "A simple React App featuring a TodoComponent with Material Design",
+  "keywords": [],
+  "homepage": "https://codesandbox.io/s/new",
+  "main": "src/index.js",
+  "dependencies": {
+    "material-ui": "1.0.0-beta.40",
+    "material-ui-icons": "1.0.0-beta.36",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-scripts": "1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

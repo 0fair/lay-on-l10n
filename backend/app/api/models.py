@@ -2,25 +2,16 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 
+# todo Дописать описание всех полей для автогенерации документации
 class Book(BaseModel):
     id: int
     title: str
     author: str
 
-    def __init__(self, id: int, title: str, author: str) -> object:
-        self.id = id
-        self.title = title
-        self.author = author
-
 
 class Recommendation(BaseModel):
     recommendations: List[Book]
     history: List[Book]
-
-    def __init__(self, recs: List[Book], history: List[Book]) -> object:
-        self.recommendations = recs
-        self.history = history
-
 
 
 class MovieIn(BaseModel):
