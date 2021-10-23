@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "Moscow Library books recommendation system",
   "keywords": [],
-  "homepage": "https://codesandbox.io/s/new",
+  "homepage": "https://lay-on-l10n.ru/",
   "main": "src/index.js",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.4",
-    "@mui/material": "latest",
     "@mui/lab": "latest",
+    "@mui/material": "latest",
     "@mui/styled-engine-sc": "latest",
+    "axios": "^0.23.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-scripts": "^4.0.0"

@@ -23,7 +23,7 @@ const App = () => (
     <Box sx={{flexGrow: 0.5}}>
       <AppBar position="static">
         <Toolbar>
-          <Avatar alt="Lay-On-L10n" src={lion} style={{"margin-right": "0.5em"}}/>
+          <Avatar alt="Lay-On-L10n" src={lion} style={{marginRight: "0.5em"}}/>
           <Typography variant="h7" component="div" sx={{flexGrow: 0.5}}>
             Lay-On-L10n
           </Typography>
