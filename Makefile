@@ -10,14 +10,13 @@ init:
 # Старт проекта для локального тестирования.
 # База данных поднимается заранее и c некоторым delay
 start:
-	docker-compose up moslib-db
+	docker-compose up -d moslib-db
 	sleep 150
-	docker-compose up
+	docker-compose up -d
 
 # Развертка окружения для разработки
 dev:
-    docker-compose up moslib-db
-	sleep 300
+	docker-compose up -d moslib-db
 	docker-compose -f ./backend/.dev/docker-compose.yml up --build -d
 	docker-compose -f ./frontend/.dev/docker-compose.yml up --build -d
 
@@ -35,12 +34,13 @@ stop:
 
 # Собрать и запушить проект в Container Registry в Yandex.Cloud. Для этого нужны токены и ID зарегистрированного Registry
 build_and_push:
-    docker-compose build
+	docker-compose build
 
 	echo ${YC_CONTAINER_REGISTRY_TOKEN} | docker login \
          --username oauth \
          --password-stdin \
 	cr.yandex
 
+	docker push "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-backend:latest"
 	docker push "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-frontend:latest"
-	docker push "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-frontend:latest"
+	docker push "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-db:latest"

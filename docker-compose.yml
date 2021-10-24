@@ -24,9 +24,14 @@ services:
     env_file: 
       - .env
   moslib-db:
-    image: postgres:13
+    image: "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-db:latest"
+    build:
+      dockerfile: Dockerfile
+      context: ./db/
     container_name: moslib-db
     hostname: moslib-db
+    ports:
+      - "5432:5432"
     volumes:
       - .storage:/var/lib/postgresql/data
     env_file:
