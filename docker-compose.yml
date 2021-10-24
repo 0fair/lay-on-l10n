@@ -23,6 +23,7 @@ services:
       - moslib-db
     env_file: 
       - .env
+      -
   moslib-db:
     image: "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-db:latest"
     build:
@@ -38,6 +39,36 @@ services:
       - .env
     networks:
       - moslib-recsys
+
+  moslib-fit:
+    image: "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-backend:latest"
+    build:
+      dockerfile: Dockerfile
+      context: ./backend/
+    container_name: moslib-backend
+    command:
+      - "python app/scripts/train_model.py"
+    networks:
+      - moslib-recsys
+    depends_on:
+      - moslib-db
+    env_file:
+      - .env
+
+  moslib-predict:
+    image: "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-backend:latest"
+    build:
+      dockerfile: Dockerfile
+      context: ./backend/
+    container_name: moslib-backend
+    command:
+      - "python app/scripts/generate_predictions.py"
+    networks:
+      - moslib-recsys
+    depends_on:
+      - moslib-db
+    env_file:
+      - .env
 
 networks:
   moslib-recsys:

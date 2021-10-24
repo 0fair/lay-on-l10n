@@ -1,5 +1,4 @@
-from app.api.models import MovieIn, MovieOut, MovieUpdate
-from app.db.db import conn, history, database
+from app.db.db import conn
 
 
 def get_user_history(user_id: int):
@@ -48,27 +47,3 @@ def get_recommendations(user_id: int):
         records = cursor.fetchall()
 
     return records
-
-# async def get_all_movies():
-#     query = movies.select()
-#     return await database.fetch_all(query=query)
-#
-#
-# async def get_movie(id):
-#     query = movies.select(movies.c.id == id)
-#     return await database.fetch_one(query=query)
-#
-#
-# async def delete_movie(id: int):
-#     query = movies.delete().where(movies.c.id == id)
-#     return await database.execute(query=query)
-#
-#
-# async def update_movie(id: int, payload: MovieIn):
-#     query = (
-#         movies
-#             .update()
-#             .where(movies.c.id == id)
-#             .values(**payload.dict())
-#     )
-#     return await database.execute(query=query)

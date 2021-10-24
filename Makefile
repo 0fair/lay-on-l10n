@@ -44,3 +44,9 @@ build_and_push:
 	docker push "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-backend:latest"
 	docker push "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-frontend:latest"
 	docker push "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-db:latest"
+
+fit:
+	docker-compose up moslib-fit
+
+predict:
+	docker-compose up moslib-predict

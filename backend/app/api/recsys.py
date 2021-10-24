@@ -1,16 +1,6 @@
-import typing
-from typing import Optional
-
 import fastapi
-from typing import List
-from fastapi import APIRouter, HTTPException
-
 from app.api.models import Recommendation, Book
 from app.db import db_manager
-import pydantic
-from pydantic import BaseModel
-from fastapi import FastAPI
-from typing import List
 
 recsys = fastapi.APIRouter()
 
