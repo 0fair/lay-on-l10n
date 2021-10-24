@@ -6,6 +6,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.vscode
+
+datasets
 
 # C extensions
 *.so

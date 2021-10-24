@@ -109,7 +109,7 @@ class RecSysComponent extends React.Component {
     }
 
     axios
-      .get('http://localhost:8080/api/v1/recsys/recsys/' + newTask)
+      .get(window.location.origin + '/api/v1/recsys/recsys/' + newTask)
       .then(res => {
         const result = res.data;
         console.log(result)

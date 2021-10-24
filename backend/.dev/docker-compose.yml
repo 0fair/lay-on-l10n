@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  moslib:
+    build: 
+      context: ../
+      dockerfile: Dockerfile
+    container_name: moslib-backend
+    ports:
+      - "8080:80"
+    networks:
+      - moslib-recsys
+    volumes:
+      - "./app:/code/app"
+      - "./requirements.txt:/code/requirements.txt"
+    command:
+      - "uvicorn"
+      - "app.main:app"
+      - "--proxy-headers"
+      - "--host"
+      - "0.0.0.0"
+      - "--reload"
+      - "--port"
+      - "80"
+    env_file:
+      - ../../.env.dev
+    depends_on:
+      - moslib-db
+
+networks:
+  moslib-recsys:
+    external: true
+    name: moslib-recsys

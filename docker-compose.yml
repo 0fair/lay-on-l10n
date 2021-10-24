@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   moslib-front:
-    image: "cr.yandex/${YC_CONTAINER_REGISTRY_OD}/moslib-frontend:latest"
+    image: "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-frontend:latest"
     build: 
       dockerfile: Dockerfile
       context: ./frontend/
@@ -12,26 +12,21 @@ services:
       - moslib-recsys
 
   moslib-backend:
-    image: "cr.yandex/${YC_CONTAINER_REGISTRY_OD}/moslib-backend:latest"
+    image: "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-backend:latest"
     build: 
       dockerfile: Dockerfile
       context: ./backend/
     container_name: moslib-backend
-    ports:
-      - "8080:80"
     networks:
       - moslib-recsys
     depends_on:
       - moslib-db
     env_file: 
       - .env
-# todo Убрать command, вынести переменные в секреты, убрать вольюмы и проч
   moslib-db:
     image: postgres:13
     container_name: moslib-db
     hostname: moslib-db
-    ports:
-      - "5432:5432"
     volumes:
       - .storage:/var/lib/postgresql/data
     env_file:
@@ -43,8 +38,3 @@ networks:
   moslib-recsys:
     external: true
     name: moslib-recsys
-
-
-
-
-# @todo вынести environment в отдельные файлы переменных окружения
