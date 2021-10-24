@@ -1,6 +1,0 @@
-POST http://localhost:8080/
-Content-Type: application/json
-
-{"name":"Star Wars","plot":"The surviving members of the resistance face the First Order once a aganin.","genres":["Action","Adventure","Fantasy"],"casts":["Daisy Ridley","Adam Driver"]}
-
-###
