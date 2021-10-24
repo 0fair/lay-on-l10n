@@ -39,7 +39,7 @@ def get_recommendations(user_id: int):
             FROM recsys_predictions rpr
                 LEFT JOIN history h on h.user_id = rpr.user_id AND rpr.book_id = h.book_id
                 JOIN books b ON rpr.book_id = b.id
-            WHERE rpr.user_id = %s
+            WHERE rpr.user_id = %s AND h.book_id IS NULL
             ORDER BY prediction DESC
             LIMIT 5
             ''', (user_id,))
