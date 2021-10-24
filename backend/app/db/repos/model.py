@@ -1,19 +1,9 @@
-import os
-
-from sqlalchemy import MetaData, create_engine, ARRAY, BigInteger, Boolean, Column, Date, Enum, Float, Index, Integer, String, Table, Text, text
+# coding: utf-8
+from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Date, Enum, Float, Index, Integer, String, Table, Text, text
 from sqlalchemy.ext.declarative import declarative_base
-from databases import Database
-import psycopg2
 
-DATABASE_URI = os.getenv('DATABASE_URI')
-
-engine = create_engine(DATABASE_URI)
-metadata = MetaData()
 Base = declarative_base()
-
-conn = psycopg2.connect(dbname=os.getenv('POSTGRES_USER'), user=os.getenv('POSTGRES_DB'),
-                        password=os.getenv('POSTGRES_PASSWORD'), host='moslib-db')
-
+metadata = Base.metadata
 
 
 class Book(Base):
@@ -30,7 +20,7 @@ class Book(Base):
     norm_part = Column(Integer)
 
 
-history = Table(
+t_history = Table(
     'history', metadata,
     Column('user_id', BigInteger, nullable=False),
     Column('book_id', BigInteger, nullable=False),
@@ -63,5 +53,3 @@ t_recsys_predictions = Table(
     Column('book_id', BigInteger),
     Column('prediction', Float)
 )
-
-database = Database(DATABASE_URI)

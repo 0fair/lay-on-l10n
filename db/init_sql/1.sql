@@ -44,6 +44,15 @@ CREATE TABLE IF NOT EXISTS recsys_popular
 );
 
 
+COPY recsys_predictions (
+                         user_id,
+                         book_id,
+                         prediction
+    )
+    FROM '/var/datasets/recsys_predictions.csv'
+    DELIMITER ','
+    CSV HEADER;
+
 COPY books (id,
             author_fullname,
             title_original,
@@ -74,4 +83,3 @@ COPY recsys_popular (
     FROM '/var/datasets/recsys_popular.csv'
     DELIMITER ','
     CSV HEADER;
-
