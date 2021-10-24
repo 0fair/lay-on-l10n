@@ -108,8 +108,12 @@ class RecSysComponent extends React.Component {
       this.setState({alertMessage: ""})
     }
 
+    let origin = window.location.origin
+    if (origin.indexOf('localhost')) {
+      origin = 'http://localhost:8080'
+    }
     axios
-      .get('http://localhost:8080' + '/api/v1/recsys/recommend/' + newTask)
+      .get(origin + '/api/v1/recsys/recommend/' + newTask)
       .then(res => {
         const result = res.data;
         console.log(result)

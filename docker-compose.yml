@@ -23,7 +23,7 @@ services:
       - moslib-db
     env_file: 
       - .env
-      -
+
   moslib-db:
     image: "cr.yandex/${YC_CONTAINER_REGISTRY_ID}/moslib-db:latest"
     build:
